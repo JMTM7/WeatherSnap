@@ -1,4 +1,4 @@
-# weathersnap
+# Technical Test: WeatherSnap
 
 ## Table of Contents
 
@@ -30,8 +30,8 @@ Technical Test: A web application developed in ReactJS that queries a weather se
 
 List of the main technologies and libraries used in the project.
 
-- **React** - JavaScript library for building user interfaces.
-- **React Router** - Library for routing in React applications.
+- **React**: JavaScript library for building user interfaces.
+- **React Router**: Library for routing in React applications.
 - **Redux**: A state management library for managing the application state.
 - **Styled-components**: A library for styling components using CSS-in-JS.
 - **Webpack**: A static module bundler for JavaScript applications.
@@ -61,4 +61,4 @@ his will create a `build` directory with the production build of your app. The b
 
 ## License
 
-This project is licensed under the MIT License - see the  [License](./License) file for details.
+This project is licensed under the MIT License - see the [License](License) file for details.
