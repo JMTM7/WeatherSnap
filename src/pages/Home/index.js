@@ -5,8 +5,6 @@ import Landscape from "assets/images/Home/landscape.png";
 import { ThemedText } from "theme";
 import { Trans } from "@lingui/macro";
 
-
-
 const PageWrapper = styled(AutoColumn)`
   width: 100%;
   ${({ theme }) => theme.mediaWidth.upToMedium`
@@ -25,7 +23,6 @@ const Wrapper = styled.div`
   margin-top: 8%;
 `;
 
-// Fade to visible transition animation
 const fadeIn = keyframes`
   from {
     filter: blur(20px);
@@ -40,9 +37,9 @@ const fadeIn = keyframes`
 const Title = styled(ThemedText.Title)`
   text-align: center;
   transition: opacity 1s ease-out, filter 1s ease-out;
-  opacity: ${({ isLoaded }) => (isLoaded ? 1 : 0)};
-  filter: ${({ isLoaded }) => (isLoaded ? "blur(0)" : "blur(20px)")};
-  animation: ${({ isLoaded }) => (isLoaded ? fadeIn : "none")} 1s ease-out;
+  opacity: ${({ $isLoaded }) => ($isLoaded ? 1 : 0)};
+  filter: ${({ $isLoaded }) => ($isLoaded ? "blur(0)" : "blur(20px)")};
+  animation: ${({ $isLoaded }) => ($isLoaded ? fadeIn : "none")} 1s ease-out;
 `;
 
 
@@ -52,9 +49,9 @@ const StyledImage = styled.img`
   max-width: 100%;
   max-height: 100%;
   transition: opacity 1s ease-out, filter 1s ease-out;
-  opacity: ${({ isLoaded }) => (isLoaded ? 1 : 0)};
-  filter: ${({ isLoaded }) => (isLoaded ? "blur(0)" : "blur(20px)")};
-  animation: ${({ isLoaded }) => (isLoaded ? fadeIn : "none")} 1s ease-out;
+  opacity: ${({ $isLoaded }) => ($isLoaded ? 1 : 0)};
+  filter: ${({ $isLoaded }) => ($isLoaded ? "blur(0)" : "blur(20px)")};
+  animation: ${({ $isLoaded }) => ($isLoaded ? fadeIn : "none")} 1s ease-out;
 `;
 
 export default function Home() {
@@ -69,8 +66,8 @@ export default function Home() {
   return (
     <PageWrapper>
       <Wrapper>
-        <StyledImage src={Landscape} alt="landscape" isLoaded={isLoaded} />
-        <Title isLoaded={isLoaded}>
+        <StyledImage src={Landscape} alt="landscape" $isLoaded={isLoaded} />
+        <Title $isLoaded={isLoaded} fontStyle="italic">
           <Trans>Your Window to Tomorrow's Weather</Trans>
         </Title>
       </Wrapper>

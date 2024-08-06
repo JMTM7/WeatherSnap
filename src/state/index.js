@@ -3,9 +3,10 @@ import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { load, save } from 'redux-localstorage-simple';
 
 import { updateVersion } from './global/actions';
-import user from './user/reducer';
+import userReducer from './user/reducer';
 
-const PERSISTED_KEYS = ['user', 'transactions', 'lists'];
+
+const PERSISTED_KEYS = ['user'];
 
 const preloadedState = load({
     states: PERSISTED_KEYS,
@@ -14,13 +15,13 @@ const preloadedState = load({
 
 const store = configureStore({
     reducer: {
-        user,
+        user: userReducer,
     },
+    preloadedState,
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({ thunk: true }).concat(
             save({ states: PERSISTED_KEYS, debounce: 1000 })
         ),
-    preloadedState,
 });
 
 store.dispatch(updateVersion());

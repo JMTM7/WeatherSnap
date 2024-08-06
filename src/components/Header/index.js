@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useActiveLocale } from 'hooks/useActiveLocale';
 import { LOCALE_LABEL, SUPPORTED_LOCALES } from 'constants/locales';
-import { useLocationLinkProps } from 'hooks/useLocationLinkProps';
+import { useUserLocaleManager } from 'state/user/hooks';
 import Logo from 'assets/images/logo.png';
 import { ThemedText } from 'theme';
 import Sidebar from './Sidebar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { RowLeft } from 'components/Row';
+import { useLocationLinkProps } from 'hooks/useLocationLinkProps';
 
 const HeaderFrame = styled.div`
   height: 40px;
@@ -95,11 +96,11 @@ const Overlay = styled.div`
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 20;
-  display: ${({ isVisible }) => (isVisible ? 'block' : 'none')};
+  display: ${({ $isVisible }) => ($isVisible ? 'block' : 'none')};
 `;
 
 function LanguageMenuItem({ locale, active }) {
-  const { to, onClick } = useLocationLinkProps(locale);
+  const { to } = useLocationLinkProps(locale);
 
   if (active) return null;
 
@@ -107,7 +108,7 @@ function LanguageMenuItem({ locale, active }) {
 
   const countryCode = locale.split('-')[1];
   return (
-    <InternalLinkMenuItem onClick={onClick} to={to}>
+    <InternalLinkMenuItem to={to}>
       <img src={`${process.env.PUBLIC_URL}/images/flags/${countryCode}.svg`} width="16px" alt="flags" />
       <ThemedText.Body>
         {LOCALE_LABEL[locale]}
@@ -120,9 +121,15 @@ export default function Header() {
   const activeLocale = useActiveLocale();
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const [, setUserLocale] = useUserLocaleManager();
 
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
   const toggleMenu = () => setMenuOpen(!isMenuOpen);
+
+  const handleLocaleChange = useCallback((locale) => {
+    setUserLocale(locale);
+    setMenuOpen(false);
+  }, [setUserLocale]);
 
   const countryCode = activeLocale.split('-')[1];
 
@@ -153,13 +160,14 @@ export default function Header() {
                   locale={locale}
                   active={activeLocale === locale}
                   key={locale}
+                  onClick={() => handleLocaleChange(locale)}
                 />
               ))}
             </MenuFlyout>
           )}
         </HeaderControls>
       </HeaderFrame>
-      <Overlay isVisible={isSidebarOpen} onClick={toggleSidebar} />
+      <Overlay $isVisible={isSidebarOpen} onClick={toggleSidebar} />
       <Sidebar isOpen={isSidebarOpen} />
     </>
   );

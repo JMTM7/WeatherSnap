@@ -3,7 +3,7 @@
 ## Table of Contents
 
 1. [Description](#description)
-2. [Requirements](#requirements)
+2. [Features](#features)
 3. [Technologies Used](#technologies-used)
 4. [Installation](#installation)
 5. [Running the Application](#running-the-application)
@@ -13,18 +13,19 @@
 ## Description
 Technical Test: A web application developed in ReactJS that queries a weather service and displays the result in the language selected by the user.
 
-## Requirements
-1. Two languages: English (default) and Spanish, highlight the selected language.
+## Features
 
-2. Sidebar with three cities, e.g. London, Toronto, and Singapore.
+- Sidebar with the following options: Home, Cities (dropdown), and Form.
 
-3. API: https://openweathermap.org.
+- Displays current weather conditions for three cities: London, Toronto, Singapore.
 
-4. Display the data: associated icon, description, current temperature, minimum and maximum temperature. Choose the way you present data in a surprising way!
+- Displays the forecasts from 3 hours up to a maximum of 12 hours.
 
-5. Add a contact form in the sidebar with the following fields: name, date of birth, city, email, and phone number.
+- Contact Form with the following fields: Name, Date of Birth, City, Email, and Phone Number.
 
-6. In the form, ensure that the fields are filled in before submitting, and the button will not have any functionality.
+- The form includes two buttons: one to Reset the data and another to Check if the information has been entered.
+
+- English (default) and Spanish, highlight the selected language.
 
 ## Technologies Used
 

@@ -1,17 +1,22 @@
 import { useState, useEffect, useCallback } from 'react';
 
-const useWeatherData = (city) => {
+/**
+ * Custom hook to fetch and manage weather data for a given city
+ * @param {string} city - The name of the city for which to fetch weather and forecast data
+ * @param {string} lang - The language currently used to display the web
+ * @returns {Object} - An object containing weatherData, forecastData, loading, and error
+ */
+const useWeatherData = (city, lang) => {
     const [weatherData, setWeatherData] = useState(null);
     const [forecastData, setForecastData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    console.log(`https://api.openweathermap.org/data/2.5/weather?q=${String(city)}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`)
 
     const fetchData = useCallback(async () => {
         setLoading(true);
         try {
             const weatherResponse = await fetch(
-                `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`
+                `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric&lang=${lang}`
             );
             if (!weatherResponse.ok) {
                 throw new Error('Network response was not ok for weather');
@@ -19,7 +24,7 @@ const useWeatherData = (city) => {
             const weatherData = await weatherResponse.json();
 
             const forecastResponse = await fetch(
-                `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`
+                `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric&lang=${lang}`
             );
             if (!forecastResponse.ok) {
                 throw new Error('Network response was not ok for forecast');
@@ -32,7 +37,7 @@ const useWeatherData = (city) => {
             }));
 
             const filteredForecast = [];
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 4; i++) {
                 const start = now.getTime() + i * 3 * 60 * 60 * 1000;
                 const end = start + 3 * 60 * 60 * 1000;
                 const block = forecastList.filter(
@@ -50,7 +55,7 @@ const useWeatherData = (city) => {
             setError(error);
             setLoading(false);
         }
-    }, [city]);
+    }, [city, lang]);
 
     useEffect(() => {
         if (city) {

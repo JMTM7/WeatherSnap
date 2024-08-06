@@ -3,12 +3,11 @@ import styled from "styled-components";
 import { AutoColumn } from "components/Column";
 import { ThemedText } from "theme";
 import { Trans } from "@lingui/macro";
+import { Form } from "./components/Form";
 
 const PageWrapper = styled(AutoColumn)`
-  max-width: 800px;
   width: 100%;
-  padding: 2rem;
-  margin: auto;
+  margin-top: 4rem;
   ${({ theme }) => theme.mediaWidth.upToMedium`
       max-width: 800px;
   `};
@@ -18,13 +17,14 @@ const PageWrapper = styled(AutoColumn)`
   `};
 `;
 
-export default function Form() {
+export default function ContactForm() {
 
     return (
         <PageWrapper>
-            <ThemedText.LargeHeader>
+            <ThemedText.Title textAlign="center">
                 <Trans>Contact Form</Trans>
-            </ThemedText.LargeHeader>
+            </ThemedText.Title>
+            <Form />
         </PageWrapper>
     );
 }

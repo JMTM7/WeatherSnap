@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { AutoColumn } from "components/Column";
 import WeatherCard from "./components/WeatherCard";
 import { useParams } from "react-router-dom";
+import { useActiveLocale } from "hooks/useActiveLocale";
 
 const PageWrapper = styled(AutoColumn)`
   width: 100%;
@@ -18,9 +19,10 @@ const PageWrapper = styled(AutoColumn)`
 
 export default function Weather() {
   const { city } = useParams();
+  const currentLang = useActiveLocale();
   return (
     <PageWrapper>
-      <WeatherCard city={city} />
+      <WeatherCard city={city} lang={currentLang.split('-')[1]} />
     </PageWrapper >
   );
 }

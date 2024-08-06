@@ -11,6 +11,99 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#: src/App.js
-msgid "Hello"
-msgstr "Hello"
+#: src/components/Header/Sidebar.js
+msgid "Cities"
+msgstr "Cities"
+
+#: src/pages/Form/components/Form.js
+msgid "City"
+msgstr "City"
+
+#: src/pages/Form/index.js
+msgid "Contact Form"
+msgstr "Contact Form"
+
+#: src/pages/Form/components/Form.js
+msgid "Date of birth"
+msgstr "Date of birth"
+
+#: src/pages/Form/components/Form.js
+msgid "E-mail"
+msgstr "E-mail"
+
+#: src/pages/Weather/components/WeatherCard.js
+msgid "Feels like"
+msgstr "Feels like"
+
+#: src/pages/Weather/components/WeatherCard.js
+msgid "Forecast 3h"
+msgstr "Forecast 3h"
+
+#: src/components/Header/Sidebar.js
+msgid "Form"
+msgstr "Form"
+
+#: src/pages/NotFound.js
+#: src/pages/Weather/components/WeatherCard.js
+msgid "Go back to Home"
+msgstr "Go back to Home"
+
+#: src/components/Header/Sidebar.js
+msgid "Home"
+msgstr "Home"
+
+#: src/pages/Weather/components/WeatherCard.js
+msgid "Humidity"
+msgstr "Humidity"
+
+#: src/components/Header/Sidebar.js
+msgid "London"
+msgstr "London"
+
+#: src/pages/Weather/components/WeatherCard.js
+msgid "Maximum temperature"
+msgstr "Maximum temperature"
+
+#: src/pages/Weather/components/WeatherCard.js
+msgid "Minimum temperature"
+msgstr "Minimum temperature"
+
+#: src/pages/Form/components/Form.js
+msgid "Name"
+msgstr "Name"
+
+#: src/pages/Weather/components/WeatherCard.js
+msgid "No data available"
+msgstr "No data available"
+
+#: src/pages/NotFound.js
+msgid "Page Not Found"
+msgstr "Page Not Found"
+
+#: src/pages/Form/components/Form.js
+msgid "Phone"
+msgstr "Phone"
+
+#: src/pages/Form/components/Form.js
+msgid "Reset"
+msgstr "Reset"
+
+#: src/components/Header/Sidebar.js
+msgid "Singapore"
+msgstr "Singapore"
+
+#: src/pages/Form/components/Form.js
+msgid "Submit"
+msgstr "Submit"
+
+#: src/components/Header/Sidebar.js
+msgid "Toronto"
+msgstr "Toronto"
+
+#: src/pages/Weather/components/WeatherCard.js
+msgid "Wind speed"
+msgstr "Wind speed"
+
+#: src/pages/Home/index.js
+msgid "Your Window to Tomorrow's Weather"
+msgstr "Your Window to Tomorrow's Weather"

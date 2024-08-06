@@ -9,6 +9,99 @@
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#: src/pages/App.js
-msgid "Hello"
-msgstr "Hola"
+#: src/components/Header/Sidebar.js
+msgid "Cities"
+msgstr "Ciudades"
+
+#: src/pages/Form/components/Form.js
+msgid "City"
+msgstr "Ciudad"
+
+#: src/pages/Form/index.js
+msgid "Contact Form"
+msgstr "Formulario de Contacto"
+
+#: src/pages/Form/components/Form.js
+msgid "Date of birth"
+msgstr "Fecha de nacimiento"
+
+#: src/pages/Form/components/Form.js
+msgid "E-mail"
+msgstr "Correo electrónico"
+
+#: src/pages/Weather/components/WeatherCard.js
+msgid "Feels like"
+msgstr "Sensación térmica"
+
+#: src/pages/Weather/components/WeatherCard.js
+msgid "Forecast 3h"
+msgstr "Pronóstico 3h"
+
+#: src/components/Header/Sidebar.js
+msgid "Form"
+msgstr "Formulario"
+
+#: src/pages/NotFound.js
+#: src/pages/Weather/components/WeatherCard.js
+msgid "Go back to Home"
+msgstr "Regresar a Inicio"
+
+#: src/components/Header/Sidebar.js
+msgid "Home"
+msgstr "Inicio"
+
+#: src/pages/Weather/components/WeatherCard.js
+msgid "Humidity"
+msgstr "Humedad"
+
+#: src/components/Header/Sidebar.js
+msgid "London"
+msgstr "Londres"
+
+#: src/pages/Weather/components/WeatherCard.js
+msgid "Maximum temperature"
+msgstr "Temperatura máxima"
+
+#: src/pages/Weather/components/WeatherCard.js
+msgid "Minimum temperature"
+msgstr "Temperatura mínima"
+
+#: src/pages/Form/components/Form.js
+msgid "Name"
+msgstr "Nombre"
+
+#: src/pages/Weather/components/WeatherCard.js
+msgid "No data available"
+msgstr "No hay datos disponibles"
+
+#: src/pages/NotFound.js
+msgid "Page Not Found"
+msgstr "Página No Encontrada"
+
+#: src/pages/Form/components/Form.js
+msgid "Phone"
+msgstr "Teléfono"
+
+#: src/pages/Form/components/Form.js
+msgid "Reset"
+msgstr "Restablecer"
+
+#: src/components/Header/Sidebar.js
+msgid "Singapore"
+msgstr "Singapur"
+
+#: src/pages/Form/components/Form.js
+msgid "Submit"
+msgstr "Enviar"
+
+#: src/components/Header/Sidebar.js
+msgid "Toronto"
+msgstr "Toronto"
+
+#: src/pages/Weather/components/WeatherCard.js
+msgid "Wind speed"
+msgstr "Velocidad del viento"
+
+#: src/pages/Home/index.js
+msgid "Your Window to Tomorrow's Weather"
+msgstr "Tu Ventana al Clima del Mañana"

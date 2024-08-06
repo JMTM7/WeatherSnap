@@ -7,7 +7,6 @@ import styled, {
 } from "styled-components";
 import { isMobile } from "utils/userAgent";
 
-// Define los anchos de los medios
 export const MEDIA_WIDTHS = {
   upToExtraSmall: 500,
   upToSmall: 720,
@@ -15,7 +14,6 @@ export const MEDIA_WIDTHS = {
   upToLarge: 1280,
 };
 
-// Plantillas de medios
 const mediaWidthTemplates = Object.keys(MEDIA_WIDTHS).reduce((accumulator, size) => {
   accumulator[size] = (a, b, c) => css`
     @media (max-width: ${MEDIA_WIDTHS[size]}px) {
@@ -25,7 +23,6 @@ const mediaWidthTemplates = Object.keys(MEDIA_WIDTHS).reduce((accumulator, size)
   return accumulator;
 }, {});
 
-// Define los colores para el modo claro
 function colors() {
   return {
 
@@ -56,7 +53,6 @@ function colors() {
   };
 }
 
-// Define el tema
 function theme() {
   return {
     ...colors(),
@@ -67,7 +63,7 @@ function theme() {
       lg: 24,
     },
 
-    // sombras
+    // shadows
     shadow1: "#2F80ED",
 
     // media queries
@@ -85,7 +81,6 @@ function theme() {
   };
 }
 
-// Proveedor del tema
 export default function ThemeProvider({ children }) {
   const themeObject = useMemo(() => theme(), []);
 
@@ -96,17 +91,13 @@ export default function ThemeProvider({ children }) {
   );
 }
 
-// Estilos para el texto
 const TextWrapper = styled(Text)`
   color: ${({ color, theme }) => theme[color]};
 `;
 
-/**
- * Estilos preestablecidos del componente Text de Rebass
- */
 export const ThemedText = {
   Title(props) {
-    return <TextWrapper fontStyle="italic" fontSize={isMobile ? 24 : 48} fontWeight={900} color={"primary1"} {...props} />;
+    return <TextWrapper fontSize={isMobile ? 24 : 48} fontWeight={900} color={"primary1"} {...props} />;
   },
   ExtraLargeHeader(props) {
     return <TextWrapper fontSize={36} fontWeight={900} color={"text1"} {...props} />;
@@ -124,7 +115,6 @@ export const ThemedText = {
   },
 };
 
-// Estilos globales
 export const ThemedGlobalStyle = createGlobalStyle`
   * {
     margin: 0;

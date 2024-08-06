@@ -10,6 +10,8 @@ import LoadingImage from "assets/images/Weather/loading.png";
 import { format } from 'date-fns';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleLeft, faChevronCircleRight, faMinusCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import Cities from "assets/data/cities.json"
 
 const Wrapper = styled.div`
   width: 100%;
@@ -80,6 +82,19 @@ const NotFoundData = styled(ThemedText.Title)`
   transform: translate(-50%, -50%);
 `;
 
+
+const HomeLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: ${({ theme }) => theme.link1};
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 const StyledLightCard = styled(LightCard)`
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -120,10 +135,32 @@ const Button = styled.button`
   height: 24px;
   border-radius: 50%;
   cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  &:hover {
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    outline: none;
+  }
+  &:active {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    transform: translateY(2px);
+  }
+  &:disabled {
+    box-shadow: none;
+    cursor: default;
+    transform: none;
+  }
 `;
 
-export default function WeatherCard({ city }) {
-    const { weatherData, forecastData, loading, error } = useWeatherData(city);
+const StyledRowFlex = styled(RowFlex)`
+  width: 345px;
+  margin: auto;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    width: 300px;
+  `};
+`;
+
+export default function WeatherCard({ city, lang }) {
+    const { weatherData, forecastData, loading, error } = useWeatherData(city, lang);
     const [currentBlockIndex, setCurrentBlockIndex] = useState(0);
     const [openForecast, setOpenForecast] = useState(false);
     const date = new Date();
@@ -144,23 +181,32 @@ export default function WeatherCard({ city }) {
             <AutoColumn>
                 <NotFoundData>
                     <Trans>No data available</Trans>
+                    <HomeLink to="/">
+                        <Trans>Go back to Home</Trans>
+                    </HomeLink>
                 </NotFoundData>
+
             </AutoColumn>
         );
     }
 
-    // Función para avanzar al siguiente bloque
     const nextBlock = () => {
         if (currentBlockIndex < forecastData.length - 1) {
             setCurrentBlockIndex(currentBlockIndex + 1);
         }
     };
 
-    // Función para retroceder al bloque anterior
     const prevBlock = () => {
         if (currentBlockIndex > 0) {
             setCurrentBlockIndex(currentBlockIndex - 1);
         }
+    };
+
+    const getCityName = () => {
+        if (lang === 'ES') {
+            return Cities[weatherData.name] || weatherData.name;
+        }
+        return weatherData.name;
     };
 
     return (
@@ -168,7 +214,7 @@ export default function WeatherCard({ city }) {
             <CardBackground $bg={bgCard} >
                 <RowBetween>
                     <RowFlex style={{ gap: '1rem' }}>
-                        <ThemedText.ExtraLargeHeader>{weatherData.name}</ThemedText.ExtraLargeHeader>
+                        <ThemedText.ExtraLargeHeader>{getCityName()}</ThemedText.ExtraLargeHeader>
                         <img
                             src={`${process.env.PUBLIC_URL}/images/flags/${weatherData.sys.country}.svg`}
                             alt={weatherData.sys.country}
@@ -236,7 +282,7 @@ export default function WeatherCard({ city }) {
                                 <Trans>Forecast 3h</Trans>
                             </ThemedText.LargeHeader>
                             {forecastData.length > 0 && (
-                                <RowFlex style={{ width: '345px', margin: 'auto' }}>
+                                <StyledRowFlex>
                                     <Button onClick={prevBlock} disabled={currentBlockIndex === 0}>
                                         <FontAwesomeIcon icon={faChevronCircleLeft} color={currentBlockIndex === 0 ? "#6d6d6d" : "#3b83bd"} fontSize={36} />
                                     </Button>
@@ -262,7 +308,7 @@ export default function WeatherCard({ city }) {
                                     <Button onClick={nextBlock} disabled={currentBlockIndex === forecastData.length - 1}>
                                         <FontAwesomeIcon icon={faChevronCircleRight} color={currentBlockIndex === forecastData.length - 1 ? "#6d6d6d" : "#3b83bd"} fontSize={36} />
                                     </Button>
-                                </RowFlex>
+                                </StyledRowFlex>
                             )}
                         </AutoColumn>
                     </>

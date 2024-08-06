@@ -12,7 +12,7 @@ export function LanguageProvider({ children }) {
     const onActivate = useCallback(
         (locale) => {
             document.documentElement.setAttribute("lang", locale);
-            setUserLocale(locale); // stores the selected locale to persist across sessions
+            setUserLocale(locale);
         },
         [setUserLocale]
     );

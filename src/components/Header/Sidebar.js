@@ -8,7 +8,7 @@ import { RowLeft } from 'components/Row';
 const SidebarContainer = styled.div`
   position: fixed;
   top: 72px;
-  left: ${({ isOpen }) => (isOpen ? '0' : '-100%')};
+  left: ${({ $isOpen }) => ($isOpen ? '0' : '-100%')};
   width: 250px;
   height: 100vh;
   background: ${({ theme }) => theme.bg2};
@@ -70,7 +70,7 @@ const Sidebar = ({ isOpen }) => {
   const toggleCities = () => setCitiesOpen(!isCitiesOpen);
 
   return (
-    <SidebarContainer isOpen={isOpen}>
+    <SidebarContainer $isOpen={isOpen}>
       <NavItem href="/">
         <RowLeft style={{ gap: '0.5rem' }}>
           <FontAwesomeIcon icon={faHouse} fontSize={18} />
