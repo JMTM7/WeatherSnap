@@ -10,12 +10,6 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        updateUserDarkMode(state, action) {
-            state.userDarkMode = action.payload.userDarkMode;
-        },
-        updateMatchesDarkMode(state, action) {
-            state.matchesDarkMode = action.payload.matchesDarkMode;
-        },
         updateUserLocale(state, action) {
             state.userLocale = action.payload.userLocale;
         },
@@ -23,8 +17,6 @@ const userSlice = createSlice({
 });
 
 export const {
-    updateMatchesDarkMode,
-    updateUserDarkMode,
     updateUserLocale,
 } = userSlice.actions;
 

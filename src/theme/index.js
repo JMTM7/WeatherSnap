@@ -5,9 +5,9 @@ import styled, {
   css,
   ThemeProvider as StyledComponentsThemeProvider,
 } from "styled-components";
+import { isMobile } from "utils/userAgent";
 
-import { useIsDarkMode } from "../state/user/hooks";
-
+// Define los anchos de los medios
 export const MEDIA_WIDTHS = {
   upToExtraSmall: 500,
   upToSmall: 720,
@@ -15,6 +15,7 @@ export const MEDIA_WIDTHS = {
   upToLarge: 1280,
 };
 
+// Plantillas de medios
 const mediaWidthTemplates = Object.keys(MEDIA_WIDTHS).reduce((accumulator, size) => {
   accumulator[size] = (a, b, c) => css`
     @media (max-width: ${MEDIA_WIDTHS[size]}px) {
@@ -24,25 +25,41 @@ const mediaWidthTemplates = Object.keys(MEDIA_WIDTHS).reduce((accumulator, size)
   return accumulator;
 }, {});
 
-function colors(darkMode) {
+// Define los colores para el modo claro
+function colors() {
   return {
-    darkMode,
 
     // backgrounds
-    bg0: darkMode ? "#1b1d20" : "#1b1d20",
+    bg0: "linear-gradient(204deg, rgba(39,88,122,1) 0%, rgba(10,59,93,1) 100%)",
+    bg1: "#1B1D20",
+    bg2: "#102C54",
+    bg3: "#094293",
+    bg4: "#0f5787",
+    bg5: "#226A9A",
+
+    // backgrounds cards
+    bgCard0: "#1B1D20",
+    bgCard1: "#003153",
+
+    // Primary
+    primary1: "#51D1F6",
 
     // text
-    text1: darkMode ? "#000000" : "#000000",
-    text2: darkMode ? "#FFFFFF" : "#FFFFFF",
+    text1: "#FFF",
+    text2: "#000",
 
+    // Link
+    link1: "#3498DB",
 
-
+    // Border
+    border1: "#121d2E",
   };
 }
 
-function theme(darkMode) {
+// Define el tema
+function theme() {
   return {
-    ...colors(darkMode),
+    ...colors(),
 
     grids: {
       sm: 8,
@@ -50,8 +67,8 @@ function theme(darkMode) {
       lg: 24,
     },
 
-    //shadows
-    shadow1: darkMode ? "#000" : "#2F80ED",
+    // sombras
+    shadow1: "#2F80ED",
 
     // media queries
     mediaWidth: mediaWidthTemplates,
@@ -68,13 +85,9 @@ function theme(darkMode) {
   };
 }
 
-export default function ThemeProvider({
-  children,
-}) {
-
-  const darkMode = useIsDarkMode();
-
-  const themeObject = useMemo(() => theme(darkMode), [darkMode]);
+// Proveedor del tema
+export default function ThemeProvider({ children }) {
+  const themeObject = useMemo(() => theme(), []);
 
   return (
     <StyledComponentsThemeProvider theme={themeObject}>
@@ -83,29 +96,26 @@ export default function ThemeProvider({
   );
 }
 
+// Estilos para el texto
 const TextWrapper = styled(Text)`
-  color: ${({ color, theme }) => (ThemedGlobalStyle)[color]};
+  color: ${({ color, theme }) => theme[color]};
 `;
 
 /**
- * Preset styles of the Rebass Text component
+ * Estilos preestablecidos del componente Text de Rebass
  */
-
 export const ThemedText = {
-  Main(props) {
-    return <TextWrapper fontWeight={500} color={"text2"} {...props} />;
+  Title(props) {
+    return <TextWrapper fontStyle="italic" fontSize={isMobile ? 24 : 48} fontWeight={900} color={"primary1"} {...props} />;
   },
-  Link(props) {
-    return <TextWrapper fontWeight={500} color={"primary1"} {...props} />;
+  ExtraLargeHeader(props) {
+    return <TextWrapper fontSize={36} fontWeight={900} color={"text1"} {...props} />;
   },
-  Label(props) {
-    return <TextWrapper fontWeight={600} color={"text1"} {...props} />;
+  LargeHeader(props) {
+    return <TextWrapper fontSize={24} fontWeight={900} color={"text1"} {...props} />;
   },
-  Black(props) {
-    return <TextWrapper fontWeight={500} color={"text1"} {...props} />;
-  },
-  White(props) {
-    return <TextWrapper fontWeight={500} color={"white"} {...props} />;
+  MediumHeader(props) {
+    return <TextWrapper fontSize={20} fontWeight={900} color={"text1"} {...props} />;
   },
   Body(props) {
     return (
@@ -114,9 +124,17 @@ export const ThemedText = {
   },
 };
 
+// Estilos globales
 export const ThemedGlobalStyle = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+  }
   html {
     background: ${({ theme }) => theme.bg0};
     height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
   }
 `;

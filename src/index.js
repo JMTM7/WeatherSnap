@@ -3,11 +3,10 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
-import { LanguageProvider } from "./context/LanguageProvider";
+import { LanguageProvider } from "./context/languageProvider";
 import App from "./App";
 import store from "./state";
 import ThemeProvider, { ThemedGlobalStyle } from "./theme";
-import UserUpdater from "./state/user/updater";
 
 // Root element where the application will be mounted
 const container = document.getElementById("root");
@@ -18,7 +17,6 @@ createRoot(container).render(
     <Provider store={store}>
       <BrowserRouter>
         <LanguageProvider>
-          <UserUpdater />
           <ThemeProvider>
             <ThemedGlobalStyle />
             <App />

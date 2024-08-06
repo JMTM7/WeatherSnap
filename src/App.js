@@ -1,25 +1,31 @@
-
-import { Trans } from "@lingui/macro";
 import styled from "styled-components";
+import { Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import Home from "pages/Home";
+import Weather from "pages/Weather";
+import Form from "pages/Form";
+import NotFound from "pages/NotFound";
 
 const AppWrapper = styled.div`
-  text-align: center;
+  width: 100%;
 `;
 
 const AppBody = styled.div`
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
 `;
 
 function App() {
   return (
     <AppWrapper>
+      <Header />
       <AppBody>
-        <Trans>Hello</Trans>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="/weather/:city" element={<Weather />} />
+          <Route path="/contact" element={<Form />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </AppBody>
     </AppWrapper>
   );

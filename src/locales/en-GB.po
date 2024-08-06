@@ -11,6 +11,6 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#: src/pages/App.js
+#: src/App.js
 msgid "Hello"
 msgstr "Hello"
